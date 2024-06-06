@@ -15,7 +15,7 @@ Use : Spring, Jpa, H2, Redis, Security, Jwt
 - [ ] 로그인 API
 
 ### 부가 기능
-- [ ]  yahoo finance 스크래핑
+- [x]  yahoo finance 스크래핑
 - [ ]  레디스 서버로 데이터 캐싱/삭제 구현
 - [ ]  통합 에러 처리
 - [ ]  테스트 코드 작
