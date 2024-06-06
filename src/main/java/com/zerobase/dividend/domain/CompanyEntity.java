@@ -3,15 +3,16 @@ package com.zerobase.dividend.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "company")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "company")
+@Getter
 public class CompanyEntity {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)

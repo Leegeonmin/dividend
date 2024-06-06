@@ -1,0 +1,9 @@
+### GET request to example server
+POST localhost:8080/company
+Content-Type: application/json
+
+{
+  "ticker": "AA"
+}
+
+###

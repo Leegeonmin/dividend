@@ -12,12 +12,12 @@ import java.util.List;
 @Getter
 @ToString
 public class scrapDto {
-    private String compnayName;
     private List<Dividend> dividends;
 
     @ToString
     @NoArgsConstructor
     @AllArgsConstructor
+    @Getter
     public static class Dividend{
         private LocalDateTime date;
         private String dividend;
