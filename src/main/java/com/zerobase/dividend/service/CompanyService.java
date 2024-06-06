@@ -36,6 +36,15 @@ public class CompanyService {
                 .ticker(ticker)
                 .build());
 
+        addDividends(scrapDto, companyEntity);
+
+        return  CompanyDto.builder()
+                .name(companyName)
+                .ticker(ticker)
+                .build();
+    }
+
+    private void addDividends(scrapDto scrapDto, CompanyEntity companyEntity) {
         divideneRepository.saveAll(scrapDto.getDividends()
                 .stream()
                 .map(x -> DividendEntity.
@@ -46,10 +55,5 @@ public class CompanyService {
                         .build()
                 ).collect(Collectors.toList())
         );
-
-        return  CompanyDto.builder()
-                .name(companyName)
-                .ticker(ticker)
-                .build();
     }
 }
