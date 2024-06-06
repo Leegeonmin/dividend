@@ -8,7 +8,7 @@ import com.zerobase.dividend.error.CustomException;
 import com.zerobase.dividend.error.ErrorCode;
 import com.zerobase.dividend.repository.CompanyRepository;
 import com.zerobase.dividend.repository.DivideneRepository;
-import com.zerobase.dividend.scraper.YahooFinanceScraper;
+import com.zerobase.dividend.scraper.Scraper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CompanyService {
     private final CompanyRepository companyRepository;
-    private final YahooFinanceScraper scraper;
+    private final Scraper scraper;
     private final DivideneRepository divideneRepository;
 
     @Transactional

@@ -17,11 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class YahooFinanceScraper {
+public class YahooFinanceScraper implements  Scraper{
     private static final String URL = "https://finance.yahoo.com/quote/%s/history?frequency=1mo&period1=%d&period2=%d";
     private static  final String SUMMARY_URL = "https://finance.yahoo.com/quote/%s?p=%s";
     private static final long START_TIME = 86400;
-
+    @Override
     public scrapDto scrapByTicker(String ticker){
         scrapDto dto = new scrapDto();
         try {
@@ -57,7 +57,7 @@ public class YahooFinanceScraper {
         }
         return dto;
     }
-
+    @Override
     public String scrapCompanyNameByTicker(String ticker){
         String url = String.format(SUMMARY_URL, ticker, ticker);
 
