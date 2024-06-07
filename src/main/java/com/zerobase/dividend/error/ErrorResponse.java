@@ -12,5 +12,5 @@ import lombok.RequiredArgsConstructor;
 public class ErrorResponse {
     private final ErrorCode errorCode;
     private final String message;
-    private String fieldError = "";
+    private String fieldError;
 }

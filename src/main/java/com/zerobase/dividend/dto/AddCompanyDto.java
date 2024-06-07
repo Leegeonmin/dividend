@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 public class AddCompanyDto {
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Request{
         @NotBlank
         private String ticker;

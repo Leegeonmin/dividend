@@ -18,5 +18,4 @@ Use : Spring, Jpa, H2, Redis, Security, Jwt
 - [x]  yahoo finance 스크래핑
 - [ ]  레디스 서버로 데이터 캐싱/삭제 구현
 - [x]  통합 에러 처리
-- [ ]  테스트 코드 작성
 - [ ]  로그레벨로 필요한 로그 남기기
