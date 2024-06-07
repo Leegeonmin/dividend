@@ -3,7 +3,7 @@ POST localhost:8080/company
 Content-Type: application/json
 
 {
-  "ticker": "KT"
+  "ticker": "AAA"
 }
 
 ###
@@ -18,10 +18,10 @@ Content-Type: application/json
 
 ###
 
-DELETE localhost:8080/company/AAA
+DELETE localhost:8080/company/AA
 Content-Type: application/json
 
 ###
 
-GET localhost:8080/finance/dividend/KT Corpo
+GET localhost:8080/finance/dividend/Alcoa Corporation
 Content-Type: application/json

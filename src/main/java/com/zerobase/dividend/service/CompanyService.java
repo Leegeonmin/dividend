@@ -84,7 +84,7 @@ public class CompanyService {
     }
 
     @Transactional
-    public void deleteCompany(String ticker) {
+    public String deleteCompany(String ticker) {
         // 회사 조회
         CompanyEntity company = companyRepository.findByTicker(ticker)
                 .orElseThrow(() -> new CustomException(ErrorCode.INVALID_TICKER));
@@ -95,6 +95,8 @@ public class CompanyService {
         }
         // dividend 정보 삭제
         divideneRepository.deleteByCompanyId(company.getId());
+
+        return company.getName();
 
     }
 }

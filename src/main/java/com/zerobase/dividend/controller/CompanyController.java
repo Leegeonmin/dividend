@@ -3,6 +3,7 @@ package com.zerobase.dividend.controller;
 import com.zerobase.dividend.dto.AddCompanyDto;
 import com.zerobase.dividend.dto.CompanyDto;
 import com.zerobase.dividend.dto.GetCompanies;
+import com.zerobase.dividend.service.CacheService;
 import com.zerobase.dividend.service.CompanyService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class CompanyController {
 
     private final CompanyService companyService;
+    private final CacheService cacheService;
     @PostMapping
     public ResponseEntity<AddCompanyDto.Response> addCompany(@RequestBody @Valid AddCompanyDto.Request request){
         CompanyDto companyDto = companyService.addCompany(request.getTicker());
@@ -54,8 +56,8 @@ public class CompanyController {
 
     @DeleteMapping("/{ticker}")
     public ResponseEntity<?> deleteCompany(@PathVariable String ticker){
-        companyService.deleteCompany(ticker);
-
+        String companyName = companyService.deleteCompany(ticker);
+        cacheService.clearFinanceCache(companyName);
         return ResponseEntity.ok().body(ticker + " delete Success");
     }
 }

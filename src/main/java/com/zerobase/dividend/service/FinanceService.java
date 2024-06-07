@@ -1,5 +1,6 @@
 package com.zerobase.dividend.service;
 
+import com.zerobase.dividend.constants.CacheKey;
 import com.zerobase.dividend.domain.CompanyEntity;
 import com.zerobase.dividend.domain.DividendEntity;
 import com.zerobase.dividend.dto.FinanceDto;
@@ -8,6 +9,7 @@ import com.zerobase.dividend.error.ErrorCode;
 import com.zerobase.dividend.repository.CompanyRepository;
 import com.zerobase.dividend.repository.DivideneRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +17,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+
 public class FinanceService {
     private final CompanyRepository companyRepository;
     private final DivideneRepository divideneRepository;
 
+
+    @Cacheable(key = "#companyName", value = CacheKey.KEY_FINANCE)
     public FinanceDto getCompanyInfoandDividends(String companyName) {
         CompanyEntity companyEntity = companyRepository.findByName(companyName)
                 .orElseThrow(() -> new CustomException(ErrorCode.COMPANY_NOT_FOUND));
