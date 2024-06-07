@@ -7,3 +7,6 @@ Content-Type: application/json
 }
 
 ###
+
+GET localhost:8080/company?page=0&size=1
+Content-Type: application/json

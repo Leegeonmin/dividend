@@ -10,6 +10,9 @@ import com.zerobase.dividend.repository.CompanyRepository;
 import com.zerobase.dividend.repository.DivideneRepository;
 import com.zerobase.dividend.scraper.Scraper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,5 +58,19 @@ public class CompanyService {
                         .build()
                 ).collect(Collectors.toList())
         );
+    }
+
+    public Page<CompanyDto> getAll(Pageable pageable) {
+        Page<CompanyEntity> companyEntities = companyRepository.findAll(pageable);
+
+        return new PageImpl<>(companyEntities.stream()
+                .map(x->
+                        CompanyDto.builder()
+                                .ticker(x.getTicker())
+                                .name(x.getName())
+                        .build()
+
+                )
+                .collect(Collectors.toList()));
     }
 }

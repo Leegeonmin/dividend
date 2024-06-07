@@ -8,8 +8,8 @@ Use : Spring, Jpa, H2, Redis, Security, Jwt
 ### 구현해야할 API 리스트
 - [ ] 회사 배당금 정보 반환 API
 - [ ] 회사 이름 자동완성 API
-- [ ] 회사 목록 반환 API
-- [ ] 회사 정보 추가 API
+- [x] 회사 목록 반환 API
+- [x] 회사 정보 추가 API
 - [ ] 회사 정보 삭제 API
 - [ ] 회원가입 API
 - [ ] 로그인 API
