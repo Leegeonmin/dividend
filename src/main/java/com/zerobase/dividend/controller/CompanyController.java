@@ -51,4 +51,11 @@ public class CompanyController {
         List<String> companyNamesByPrefix = companyService.getCompanyNamesByPrefix(keyword);
         return ResponseEntity.ok().body(companyNamesByPrefix);
     }
+
+    @DeleteMapping("/{ticker}")
+    public ResponseEntity<?> deleteCompany(@PathVariable String ticker){
+        companyService.deleteCompany(ticker);
+
+        return ResponseEntity.ok().body(ticker + " delete Success");
+    }
 }

@@ -77,9 +77,24 @@ public class CompanyService {
     }
 
     public List<String> getCompanyNamesByPrefix(String keyword) {
-        Page<CompanyEntity> companyEntities = companyRepository.findByNameStartingWithIgnoreCase(keyword, PageRequest.of(0,10));
+        Page<CompanyEntity> companyEntities = companyRepository.findByNameStartingWithIgnoreCase(keyword, PageRequest.of(0, 10));
         return companyEntities.stream()
                 .map(x -> x.getName())
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deleteCompany(String ticker) {
+        // 회사 조회
+        CompanyEntity company = companyRepository.findByTicker(ticker)
+                .orElseThrow(() -> new CustomException(ErrorCode.INVALID_TICKER));
+        // 회사정보 삭제
+        int deleteSig = companyRepository.deleteByTicker(ticker);
+        if(deleteSig == 0){
+            throw new CustomException(ErrorCode.COMPANY_NOT_FOUND);
+        }
+        // dividend 정보 삭제
+        divideneRepository.deleteByCompanyId(company.getId());
+
     }
 }

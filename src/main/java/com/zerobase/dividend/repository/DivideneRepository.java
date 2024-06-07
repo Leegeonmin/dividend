@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DivideneRepository extends JpaRepository<DividendEntity, Long> {
 
+    void deleteByCompanyId(Long index);
 }
