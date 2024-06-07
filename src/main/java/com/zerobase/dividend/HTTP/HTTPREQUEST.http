@@ -8,7 +8,7 @@ Content-Type: application/json
 
 ###
 
-GET localhost:8080/company?page=0&size=10
+GET localhost:8080/company?page=0&size=kim
 Content-Type: application/json
 
 ###
@@ -23,5 +23,5 @@ Content-Type: application/json
 
 ###
 
-GET localhost:8080/finance/dividend/KT Corporation
+GET localhost:8080/finance/dividend/KT Corpo
 Content-Type: application/json

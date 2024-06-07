@@ -1,6 +1,10 @@
 package com.zerobase.dividend.error;
 
 
+import lombok.Getter;
+
+@Getter
+
 public class CustomException extends  RuntimeException{
     private final ErrorCode errorCode;
     private final String message;

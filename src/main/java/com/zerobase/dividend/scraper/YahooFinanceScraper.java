@@ -53,7 +53,7 @@ public class YahooFinanceScraper implements  Scraper{
 
         } catch (IOException e) {
             e.printStackTrace();
-            throw new CustomException(ErrorCode.ALREADY_EXISTED);
+            throw new CustomException(ErrorCode.COMPANY_ALREADY_EXISTED);
         }
         return dto;
     }

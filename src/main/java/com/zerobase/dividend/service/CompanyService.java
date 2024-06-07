@@ -31,7 +31,7 @@ public class CompanyService {
     public CompanyDto addCompany(String ticker) {
         boolean companyExists = companyRepository.existsByTicker(ticker);
         if (companyExists) {
-            throw new CustomException(ErrorCode.ALREADY_EXISTED);
+            throw new CustomException(ErrorCode.COMPANY_ALREADY_EXISTED);
         }
         String companyName = scraper.scrapCompanyNameByTicker(ticker);
         ScrapDto scrapDto = scraper.scrapByTicker(ticker);
