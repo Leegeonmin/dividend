@@ -2,8 +2,8 @@ package com.zerobase.dividend.error;
 
 
 public class CustomException extends  RuntimeException{
-    private ErrorCode errorCode;
-    private String message;
+    private final ErrorCode errorCode;
+    private final String message;
 
     public CustomException(ErrorCode errorCode){
         this.errorCode = errorCode;

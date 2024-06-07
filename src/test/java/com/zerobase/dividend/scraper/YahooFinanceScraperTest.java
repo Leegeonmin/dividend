@@ -1,7 +1,7 @@
 package com.zerobase.dividend.scraper;
 
 import com.zerobase.dividend.constants.Month;
-import com.zerobase.dividend.dto.scrapDto;
+import com.zerobase.dividend.dto.ScrapDto;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,7 +27,7 @@ class YahooFinanceScraperTest {
     @Test
     void getDividendFromYahooFinance(){
         String ticker = "NKE";
-        scrapDto dto = new scrapDto();
+        ScrapDto dto = new ScrapDto();
         try {
             long end = System.currentTimeMillis() / 1000;
             String url = String.format(URL, ticker, START_TIME, end);
@@ -38,7 +38,7 @@ class YahooFinanceScraperTest {
             Element tableEle = parsingDivs.get(0);
 
             Element tbody = tableEle.children().get(1);
-            List<scrapDto.Dividend> dividends = new ArrayList<>();
+            List<ScrapDto.Dividend> dividends = new ArrayList<>();
             tbody.children().stream().map(Element::text).filter(txt -> txt.endsWith("Dividend")).forEach(txt -> {
                 String[] splits = txt.split(" ");
                 int month = Month.strToNumber(splits[0]);
@@ -49,7 +49,7 @@ class YahooFinanceScraperTest {
                     throw new RuntimeException("Unexpected Month enum value -> " + splits[0]);
                 }
                 dividends.add(
-                        new scrapDto.Dividend(LocalDateTime.of(year, month, day, 0, 0),dividend));
+                        new ScrapDto.Dividend(LocalDateTime.of(year, month, day, 0, 0),dividend));
 
             });
             dto.setDividends(dividends);

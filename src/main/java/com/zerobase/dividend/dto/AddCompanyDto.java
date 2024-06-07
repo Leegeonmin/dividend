@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-public class addCompanyDto {
+public class AddCompanyDto {
     @Getter
     public static class Request{
         @NotBlank

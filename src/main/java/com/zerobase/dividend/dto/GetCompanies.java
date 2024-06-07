@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class getCompanies {
+public class GetCompanies {
     private String name;
     private String ticker;
 }

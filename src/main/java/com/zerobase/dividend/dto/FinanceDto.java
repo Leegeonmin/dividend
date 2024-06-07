@@ -1,24 +1,28 @@
 package com.zerobase.dividend.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@ToString
-public class scrapDto {
+public class FinanceDto {
+    private String companyName;
+    private String companyTicker;
+
     private List<Dividend> dividends;
 
-    @ToString
+    @Getter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Getter
-    public static class Dividend{
+    public static  class Dividend{
         private LocalDateTime date;
         private String dividend;
     }

@@ -3,7 +3,7 @@ package com.zerobase.dividend.service;
 import com.zerobase.dividend.domain.CompanyEntity;
 import com.zerobase.dividend.domain.DividendEntity;
 import com.zerobase.dividend.dto.CompanyDto;
-import com.zerobase.dividend.dto.scrapDto;
+import com.zerobase.dividend.dto.ScrapDto;
 import com.zerobase.dividend.error.CustomException;
 import com.zerobase.dividend.error.ErrorCode;
 import com.zerobase.dividend.repository.CompanyRepository;
@@ -34,7 +34,7 @@ public class CompanyService {
             throw new CustomException(ErrorCode.ALREADY_EXISTED);
         }
         String companyName = scraper.scrapCompanyNameByTicker(ticker);
-        scrapDto scrapDto = scraper.scrapByTicker(ticker);
+        ScrapDto scrapDto = scraper.scrapByTicker(ticker);
 
         CompanyEntity companyEntity = companyRepository.save(CompanyEntity.builder()
                 .name(companyName)
@@ -49,7 +49,7 @@ public class CompanyService {
                 .build();
     }
 
-    private void addDividends(scrapDto scrapDto, CompanyEntity companyEntity) {
+    private void addDividends(ScrapDto scrapDto, CompanyEntity companyEntity) {
         divideneRepository.saveAll(scrapDto.getDividends()
                 .stream()
                 .map(x -> DividendEntity.

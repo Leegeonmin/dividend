@@ -1,8 +1,8 @@
 package com.zerobase.dividend.controller;
 
+import com.zerobase.dividend.dto.AddCompanyDto;
 import com.zerobase.dividend.dto.CompanyDto;
-import com.zerobase.dividend.dto.addCompanyDto;
-import com.zerobase.dividend.dto.getCompanies;
+import com.zerobase.dividend.dto.GetCompanies;
 import com.zerobase.dividend.service.CompanyService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +23,10 @@ public class CompanyController {
 
     private final CompanyService companyService;
     @PostMapping
-    public ResponseEntity<addCompanyDto.Response> addCompany(@RequestBody @Valid addCompanyDto.Request request){
+    public ResponseEntity<AddCompanyDto.Response> addCompany(@RequestBody @Valid AddCompanyDto.Request request){
         CompanyDto companyDto = companyService.addCompany(request.getTicker());
 
-        return ResponseEntity.ok().body(addCompanyDto.Response
+        return ResponseEntity.ok().body(AddCompanyDto.Response
                 .builder()
                 .name(companyDto.getName())
                 .ticker(companyDto.getTicker())
@@ -34,11 +34,11 @@ public class CompanyController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<getCompanies>> getCompany(final Pageable pageable){
+    public ResponseEntity<Page<GetCompanies>> getCompany(final Pageable pageable){
         Page<CompanyDto> companyDtos = companyService.getAll(pageable);
 
         return ResponseEntity.ok().body(new PageImpl<>( companyDtos.stream().map(
-                x-> getCompanies
+                x-> GetCompanies
                         .builder()
                         .name(x.getName())
                         .ticker(x.getTicker())

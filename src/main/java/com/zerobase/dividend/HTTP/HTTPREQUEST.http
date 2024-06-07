@@ -3,7 +3,7 @@ POST localhost:8080/company
 Content-Type: application/json
 
 {
-  "ticker": "AAA"
+  "ticker": "KT"
 }
 
 ###
@@ -13,10 +13,15 @@ Content-Type: application/json
 
 ###
 
-GET localhost:8080/company/autocomplete?keyword=A
+GET localhost:8080/company/autocomplete?keyword=
 Content-Type: application/json
 
 ###
 
 DELETE localhost:8080/company/AAA
+Content-Type: application/json
+
+###
+
+GET localhost:8080/finance/dividend/KT Corporation
 Content-Type: application/json
