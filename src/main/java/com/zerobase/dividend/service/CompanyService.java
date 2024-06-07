@@ -79,7 +79,7 @@ public class CompanyService {
     public List<String> getCompanyNamesByPrefix(String keyword) {
         Page<CompanyEntity> companyEntities = companyRepository.findByNameStartingWithIgnoreCase(keyword, PageRequest.of(0, 10));
         return companyEntities.stream()
-                .map(x -> x.getName())
+                .map(CompanyEntity::getName)
                 .collect(Collectors.toList());
     }
 

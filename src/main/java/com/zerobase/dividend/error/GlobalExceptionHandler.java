@@ -33,6 +33,7 @@ public class GlobalExceptionHandler {
 
         BindingResult bindingResult = e.getBindingResult();
         FieldError error = bindingResult.getFieldError();
+        assert error != null;
         String fieldError = String.format("Field: %s, Error: %s", error.getField(), error.getDefaultMessage());
 
         return ResponseEntity.status(ErrorCode.INVALID_REQUEST.getHttpStatus()).body(
