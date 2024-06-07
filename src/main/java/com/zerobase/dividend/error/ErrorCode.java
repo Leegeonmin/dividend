@@ -11,9 +11,10 @@ public enum ErrorCode {
     INVALID_TICKER("유효하지 않은 ticker입니다",HttpStatus.BAD_REQUEST),
     ALREADY_EXISTED("이미 등록되어있는 회사입니다", HttpStatus.BAD_REQUEST);
 
-    private String description;
-    private HttpStatus httpStatus;
+    private final String description;
+    private final HttpStatus httpStatus;
     ErrorCode(String description, HttpStatus httpStatus) {
         this.description = description;
+        this.httpStatus = httpStatus;
     }
 }
