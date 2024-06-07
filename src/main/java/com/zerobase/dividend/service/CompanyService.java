@@ -12,10 +12,12 @@ import com.zerobase.dividend.scraper.Scraper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,7 +43,7 @@ public class CompanyService {
 
         addDividends(scrapDto, companyEntity);
 
-        return  CompanyDto.builder()
+        return CompanyDto.builder()
                 .name(companyName)
                 .ticker(ticker)
                 .build();
@@ -64,13 +66,20 @@ public class CompanyService {
         Page<CompanyEntity> companyEntities = companyRepository.findAll(pageable);
 
         return new PageImpl<>(companyEntities.stream()
-                .map(x->
+                .map(x ->
                         CompanyDto.builder()
                                 .ticker(x.getTicker())
                                 .name(x.getName())
-                        .build()
+                                .build()
 
                 )
                 .collect(Collectors.toList()));
+    }
+
+    public List<String> getCompanyNamesByPrefix(String keyword) {
+        Page<CompanyEntity> companyEntities = companyRepository.findByNameStartingWithIgnoreCase(keyword, PageRequest.of(0,10));
+        return companyEntities.stream()
+                .map(x -> x.getName())
+                .collect(Collectors.toList());
     }
 }

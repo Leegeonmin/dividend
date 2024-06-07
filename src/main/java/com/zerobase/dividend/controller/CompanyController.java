@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -43,5 +44,11 @@ public class CompanyController {
                         .ticker(x.getTicker())
                         .build()
         ).collect(Collectors.toList())));
+    }
+
+    @GetMapping("/autocomplete")
+    public ResponseEntity<List<String>> getCompanyNamesByAutocomplete(@RequestParam(required = false) String keyword){
+        List<String> companyNamesByPrefix = companyService.getCompanyNamesByPrefix(keyword);
+        return ResponseEntity.ok().body(companyNamesByPrefix);
     }
 }
