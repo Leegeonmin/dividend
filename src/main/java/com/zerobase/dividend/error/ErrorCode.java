@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode {
+    PASSWORD_WRONG("비밀번호가 틀렸습니다", HttpStatus.BAD_REQUEST),
+    USER_NOT_FOUND("일치하는 회원이 없습니다", HttpStatus.BAD_REQUEST),
+    ALREADY_USERNAME_EXISTED("이미 존재하는 회원 아이디입니다", HttpStatus.BAD_REQUEST),
     INTERNAL_SERVER_ERROR("내부 서버 에러입니다", HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_REQUEST("알 수 없는 요청입니다", HttpStatus.BAD_REQUEST),
     COMPANY_NOT_FOUND("회사 정보가 존재하지 않습니다", HttpStatus.BAD_REQUEST),

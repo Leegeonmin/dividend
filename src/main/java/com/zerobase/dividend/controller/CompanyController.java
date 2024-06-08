@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public class CompanyController {
     private final CompanyService companyService;
     private final CacheService cacheService;
     @PostMapping
+    @PreAuthorize("hasRole('WRITE')")
+
     public ResponseEntity<AddCompanyDto.Response> addCompany(@RequestBody @Valid AddCompanyDto.Request request){
         CompanyDto companyDto = companyService.addCompany(request.getTicker());
 
@@ -36,6 +39,8 @@ public class CompanyController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('READ')")
+
     public ResponseEntity<Page<GetCompanies>> getCompany(final Pageable pageable){
         Page<CompanyDto> companyDtos = companyService.getAll(pageable);
 

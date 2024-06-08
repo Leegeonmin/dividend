@@ -16,6 +16,8 @@ spring:
     username: sa
     password:
 
+  jwt:
+    secret : bGVlZ2Vvbm1pbmtpbWh5ZXNlb25sb3N0YXJ0Ym9uZ2JvbmdtYWthcm9uZw==bGVlZ2Vvbm1pbmtpbWh5ZXNlb25sb3N0YXJ0Ym9uZ2JvbmdtYWthcm9uZw==
   data:
     redis:
       host: localhost

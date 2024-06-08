@@ -1,15 +1,23 @@
 ### GET request to example server
 POST localhost:8080/company
 Content-Type: application/json
+Authorization: BEARER .eyJzdWIiOiJsZSIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzE3ODgyODYyLCJleHAiOjE3MTc4ODY0NjJ9.7hXmYdF-oJXVcoLPKxWht9xcIzx7btwlwf-cdIbszlQyLsqd47gPAlJ57eXgG3YahSNgvb3hgEn1kG3Mq3768A
+
+
+
 
 {
-  "ticker": "AAA"
+  "ticker": "AA"
 }
 
 ###
 
-GET localhost:8080/company?page=0&size=kim
+GET localhost:8080/company?page=0&size=10
 Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsZSIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzE3ODgyODYyLCJleHAiOjE3MTc4ODY0NjJ9.7hXmYdF-oJXVcoLPKxWht9xcIzx7btwlwf-cdIbszlQyLsqd47gPAlJ57eXgG3YahSNgvb3hgEn1kG3Mq3768A
+
+
+
 
 ###
 
@@ -23,5 +31,26 @@ Content-Type: application/json
 
 ###
 
-GET localhost:8080/finance/dividend/Alcoa Corporation
+GET localhost:8080/finance/dividend/NIKE, Inc.
 Content-Type: application/json
+
+###
+
+POST localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+  "username": "le",
+  "password": "123",
+  "roles": ["ROLE_READ", "ROLE_WRITE"]
+}
+
+###
+
+POST localhost:8080/auth/signin
+Content-Type: application/json
+
+{
+  "username": "le",
+  "password": "123"
+}
