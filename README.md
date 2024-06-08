@@ -4,7 +4,7 @@
 배당금 정보를 제공하는 서비스 클론 프로젝트
 
 Use : Spring, Jpa, H2, Redis, Security, Jwt
-
+<img src="https://github.com/Leegeonmin/dividend/assets/74194550/c57a9d28-ebea-47ef-990c-f403fbf6c362.png"  width="750" height="570"/>
 ### 구현해야할 API 리스트
 - [x] 회사 배당금 정보 반환 API
 - [x] 회사 이름 자동완성 API
