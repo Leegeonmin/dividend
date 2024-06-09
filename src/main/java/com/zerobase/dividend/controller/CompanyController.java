@@ -7,6 +7,7 @@ import com.zerobase.dividend.service.CacheService;
 import com.zerobase.dividend.service.CompanyService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/company")
+@Slf4j
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -29,6 +31,8 @@ public class CompanyController {
     @PreAuthorize("hasRole('WRITE')")
 
     public ResponseEntity<AddCompanyDto.Response> addCompany(@RequestBody @Valid AddCompanyDto.Request request){
+        log.info("CompanyController -> addCompany");
+
         CompanyDto companyDto = companyService.addCompany(request.getTicker());
 
         return ResponseEntity.ok().body(AddCompanyDto.Response
@@ -42,6 +46,8 @@ public class CompanyController {
     @PreAuthorize("hasRole('READ')")
 
     public ResponseEntity<Page<GetCompanies>> getCompany(final Pageable pageable){
+        log.info("CompanyController -> getCompany");
+
         Page<CompanyDto> companyDtos = companyService.getAll(pageable);
 
         return ResponseEntity.ok().body(new PageImpl<>( companyDtos.stream().map(
@@ -55,12 +61,16 @@ public class CompanyController {
 
     @GetMapping("/autocomplete")
     public ResponseEntity<List<String>> getCompanyNamesByAutocomplete(@RequestParam(required = false) String keyword){
+        log.info("CompanyController -> getCompanyNamesByAutocomplete");
+
         List<String> companyNamesByPrefix = companyService.getCompanyNamesByPrefix(keyword);
         return ResponseEntity.ok().body(companyNamesByPrefix);
     }
 
     @DeleteMapping("/{ticker}")
     public ResponseEntity<?> deleteCompany(@PathVariable String ticker){
+        log.info("CompanyController -> deleteCompany");
+
         String companyName = companyService.deleteCompany(ticker);
         cacheService.clearFinanceCache(companyName);
         return ResponseEntity.ok().body(ticker + " delete Success");
